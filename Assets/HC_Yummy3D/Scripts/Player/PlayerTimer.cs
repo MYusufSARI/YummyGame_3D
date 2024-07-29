@@ -21,15 +21,31 @@ public class PlayerTimer : MonoBehaviour
     private void Start()
     {
         Initialize();
+
+        GameManager.onGameStateChanged += GameStateChangedCallback;
+    }
+
+
+    private void OnDestroy()
+    {
+        GameManager.onGameStateChanged -= GameStateChangedCallback;
+    }
+
+
+    private void GameStateChangedCallback(GameState gameState)
+    {
+        switch (gameState)
+        {
+            case GameState.GAME:
+                StartTimer();
+                break;
+        }
     }
 
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            StartTimer();
-        }
+        
     }
 
 

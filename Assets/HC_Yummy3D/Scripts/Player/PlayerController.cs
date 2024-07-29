@@ -14,15 +14,17 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        EnableMovement();
-
         PlayerTimer.onTimerOver += DisableMovement;
+
+        GameManager.onGameStateChanged += GameStateChangedCallback;
     }
 
 
     private void OnDestroy()
     {
         PlayerTimer.onTimerOver -= DisableMovement;
+
+        GameManager.onGameStateChanged -= GameStateChangedCallback;
     }
 
 
@@ -63,6 +65,17 @@ public class PlayerController : MonoBehaviour
             Vector3 targetPosition = transform.position + difference * moveSpeed * Time.deltaTime;
 
             transform.position = targetPosition;
+        }
+    }
+
+
+    private void GameStateChangedCallback(GameState gameState)
+    {
+        switch (gameState)
+        {
+            case GameState.GAME:
+                EnableMovement();
+                break;
         }
     }
 
