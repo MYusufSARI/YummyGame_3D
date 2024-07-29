@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,6 +17,10 @@ public class PlayerSize : MonoBehaviour
     private float scaleValue;
 
 
+    [Header(" Events ")]
+    public static Action<float> onIncreased;
+
+
 
     private void Start()
     {
@@ -29,6 +34,8 @@ public class PlayerSize : MonoBehaviour
 
         LeanTween.scale(transform.gameObject, targetScale * Vector3.one, 0.5f * Time.deltaTime * 60)
             .setEase(LeanTweenType.easeInOutBack);
+
+        onIncreased?.Invoke(targetScale);
     }
 
 
