@@ -9,6 +9,12 @@ public class Collectible : MonoBehaviour
 
 
 
+    private void Start()
+    {
+        GetComponent<Rigidbody>().sleepThreshold = 0;
+    }
+
+
     public float GetSize()
     {
         return _size;

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8094322772305561265}
   - component: {fileID: 5765448253683456850}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Cube 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -64,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d6120ebb821e54bad89eb0e26f11b242, type: 2}
+  - {fileID: 2100000, guid: a9c1a560e095642b8989c8b6335f467e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -146,4 +146,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 283b59bf2e04e4a1a8be3da05507680d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _size: 0.4
+  _size: 0.8
