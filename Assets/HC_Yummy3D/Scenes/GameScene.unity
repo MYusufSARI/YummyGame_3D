@@ -232,6 +232,7 @@ GameObject:
   - component: {fileID: 406504574}
   - component: {fileID: 406504575}
   - component: {fileID: 406504576}
+  - component: {fileID: 406504577}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -283,7 +284,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fillImage: {fileID: 527825447}
   scaleIncreaseThreshold: 2
-  scaleStep: 0.5
+  scaleStep: 0.2
   sizeCurve:
     serializedVersion: 2
     m_Curve:
@@ -308,6 +309,20 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &406504577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 406504573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3848d7712b5a84714bfdfdbef5d4d846, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timerText: {fileID: 1671850708}
+  timerDuration: 100
 --- !u!1 &435538870
 GameObject:
   m_ObjectHideFlags: 0
@@ -1236,17 +1251,17 @@ PrefabInstance:
     - target: {fileID: 2039628113549393924, guid: e9616620f477c463f9a13b9bee23715d,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 2039628113549393924, guid: e9616620f477c463f9a13b9bee23715d,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 2039628113549393924, guid: e9616620f477c463f9a13b9bee23715d,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 1
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 2039628113549393924, guid: e9616620f477c463f9a13b9bee23715d,
         type: 3}
@@ -1302,11 +1317,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cube 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5765448253683456850, guid: e9616620f477c463f9a13b9bee23715d,
-        type: 3}
-      propertyPath: _size
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1928,10 +1938,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 00:10
+  m_text: 00:40
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: c4ae25474cdfd41e7a6b020d33f7dba6, type: 2}
-  m_sharedMaterial: {fileID: 6555157670254387937, guid: c4ae25474cdfd41e7a6b020d33f7dba6,
+  m_fontAsset: {fileID: 11400000, guid: 8652ae4d89efe492280876004d520279, type: 2}
+  m_sharedMaterial: {fileID: -1524660028642202858, guid: 8652ae4d89efe492280876004d520279,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -1959,8 +1969,8 @@ MonoBehaviour:
   m_fontSize: 0.3
   m_fontSizeBase: 0.3
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 0.1
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 0.05
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 2
