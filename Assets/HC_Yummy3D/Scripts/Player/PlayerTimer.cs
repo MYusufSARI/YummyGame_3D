@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,10 @@ public class PlayerTimer : MonoBehaviour
     [SerializeField] private int timerDuration;
     private int _timer;
     private bool timerIsOn;
+
+
+    [Header(" Actions ")]
+    public static Action onTimerOver;
 
 
 
@@ -70,6 +75,8 @@ public class PlayerTimer : MonoBehaviour
     public void StopTimer()
     {
         Debug.Log("Timer is over ! ");
+
+        onTimerOver?.Invoke();
     }
 
 

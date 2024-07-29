@@ -8,11 +8,27 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float screenPositionFollowThershold;
     [SerializeField] private float moveSpeed;
     private Vector3 clickedScreenPosition;
+    private bool canMove;
 
+
+
+    private void Start()
+    {
+        EnableMovement();
+
+        PlayerTimer.onTimerOver += DisableMovement;
+    }
+
+
+    private void OnDestroy()
+    {
+        PlayerTimer.onTimerOver -= DisableMovement;
+    }
 
 
     private void Update()
     {
+        if(canMove)
         ManageControl();
     }
 
@@ -48,5 +64,17 @@ public class PlayerController : MonoBehaviour
 
             transform.position = targetPosition;
         }
+    }
+
+
+    private void EnableMovement()
+    {
+        canMove = true;
+    }
+
+
+    private void DisableMovement()
+    {
+        canMove = false;
     }
 }
