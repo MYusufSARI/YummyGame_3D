@@ -12,6 +12,7 @@ public class PlayerSize : MonoBehaviour
     [Header(" Settings ")]
     [SerializeField] private float scaleIncreaseThreshold;
     [SerializeField] private float scaleStep;
+    [SerializeField] private AnimationCurve sizeCurve;
     private float scaleValue;
 
 
@@ -24,7 +25,10 @@ public class PlayerSize : MonoBehaviour
 
     private void IncreaseScale()
     {
-        transform.localScale += scaleStep * Vector3.one;
+        float targetScale = transform.localScale.x + scaleStep;
+
+        LeanTween.scale(transform.gameObject, targetScale * Vector3.one, 0.5f * Time.deltaTime * 60)
+            .setEase(LeanTweenType.easeInOutBack);
     }
 
 
@@ -45,6 +49,10 @@ public class PlayerSize : MonoBehaviour
 
     private void UpdateFillDisplay()
     {
-        fillImage.fillAmount = scaleValue / scaleIncreaseThreshold;
+        float targetFillAmount = scaleValue / scaleIncreaseThreshold;
+
+        LeanTween.value(fillImage.fillAmount, targetFillAmount, 0.2f * Time.deltaTime * 60)
+            .setOnUpdate((value) => fillImage.fillAmount = value);
+
     }
 }
