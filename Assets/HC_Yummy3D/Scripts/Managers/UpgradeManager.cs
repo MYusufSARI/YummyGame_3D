@@ -41,12 +41,36 @@ public class UpgradeManager : MonoBehaviour
         LoadData();
 
         InitializeButtons();
+
+        DataManager.onCoinsUpdated += CoinsUpdatedCallback;
+    }
+
+
+    private void OnDestroy()
+    {
+        DataManager.onCoinsUpdated -= CoinsUpdatedCallback;
+    }
+
+
+    private void CoinsUpdatedCallback()
+    {
+        UpdateButtonsInteractability();
     }
 
 
     private void InitializeButtons()
     {
         UpdateButtonsVisuals();
+
+        UpdateButtonsInteractability();
+    }
+
+
+    private void UpdateButtonsInteractability()
+    {
+        timerButton.interactable = GetUpgradePrice(timerLevel) <= DataManager.instance.GetCoins();
+        sizeButton.interactable = GetUpgradePrice(sizeLevel) <= DataManager.instance.GetCoins();
+        powerButton.interactable = GetUpgradePrice(powerLevel) <= DataManager.instance.GetCoins();
     }
 
 
