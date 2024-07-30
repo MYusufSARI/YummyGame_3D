@@ -16,9 +16,13 @@ public class GameManager : MonoBehaviour
 
 
 
-    private void Start()
+    IEnumerator Start()
     {
+        yield return null;
+
         gameState = GameState.MENU;
+
+        onGameStateChanged?.Invoke(gameState);
     }
 
 
