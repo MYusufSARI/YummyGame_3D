@@ -2810,6 +2810,8 @@ MonoBehaviour:
   timerButton: {fileID: 1096617584}
   sizeButton: {fileID: 1583941505}
   powerButton: {fileID: 2029854087}
+  basePrice: 100
+  priceStep: 100
 --- !u!4 &1530171470
 Transform:
   m_ObjectHideFlags: 0

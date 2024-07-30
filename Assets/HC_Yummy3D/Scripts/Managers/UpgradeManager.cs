@@ -23,6 +23,11 @@ public class UpgradeManager : MonoBehaviour
     private const string POWER_KEY = "PowerLevel";
 
 
+    [Header(" Pricing ")]
+    [SerializeField] private int basePrice;
+    [SerializeField] private int priceStep;
+
+
     [Header(" Events ")]
     public static Action onTimerPurchased;
     public static Action onSizePurchased;
@@ -40,31 +45,54 @@ public class UpgradeManager : MonoBehaviour
 
     private void InitializeButtons()
     {
-        int timerPrice = 100;
-        int sizePrice = 150;
-        int powerPrice = 200;
+        UpdateButtonsVisuals();
+    }
 
-        timerButton.GetComponent<UpgradeButton>().Configure(timerLevel, timerPrice);
-        sizeButton.GetComponent<UpgradeButton>().Configure(sizeLevel, sizePrice);
-        powerButton.GetComponent<UpgradeButton>().Configure(powerLevel, powerPrice);
+
+    private void UpdateButtonsVisuals()
+    {
+        timerButton.GetComponent<UpgradeButton>().Configure(timerLevel, GetUpgradePrice(timerLevel));
+        sizeButton.GetComponent<UpgradeButton>().Configure(sizeLevel, GetUpgradePrice(sizeLevel));
+        powerButton.GetComponent<UpgradeButton>().Configure(powerLevel, GetUpgradePrice(powerLevel));
     }
 
 
     public void TimerButtonCallback()
     {
         onTimerPurchased?.Invoke();
+
+        timerLevel++;
+        SaveData();
+
+        UpdateButtonsVisuals();
     }
 
 
     public void SizeButtonCallback()
     {
         onSizePurchased?.Invoke();
+
+        sizeLevel++;
+        SaveData();
+
+        UpdateButtonsVisuals();
     }
 
 
     public void PowerButtonCallback()
     {
         onPowerPurchased?.Invoke();
+
+        powerLevel++;
+        SaveData();
+
+        UpdateButtonsVisuals();
+    }
+
+
+    private int GetUpgradePrice(int upgradeLevel)
+    {
+        return basePrice + upgradeLevel * priceStep;
     }
 
 
