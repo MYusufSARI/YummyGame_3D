@@ -13,8 +13,19 @@ public class PlayerTimer : MonoBehaviour
     private bool timerIsOn;
 
 
+    [Header(" Settings ")]
+    [SerializeField] private int additionTimePerLevel;
+
+
     [Header(" Actions ")]
     public static Action onTimerOver;
+
+
+
+    private void Awake()
+    {
+        UpgradeManager.onDataLoaded += UpgradeDataLoadedCallback;
+    }
 
 
 
@@ -33,6 +44,8 @@ public class PlayerTimer : MonoBehaviour
         GameManager.onGameStateChanged -= GameStateChangedCallback;
 
         UpgradeManager.onTimerPurchased -= TimerPurchasedCallback;
+
+        UpgradeManager.onDataLoaded -= UpgradeDataLoadedCallback;
     }
 
 
@@ -102,7 +115,15 @@ public class PlayerTimer : MonoBehaviour
 
     private void TimerPurchasedCallback()
     {
-        timerDuration += 3;
+        timerDuration += additionTimePerLevel;
+        Initialize();
+    }
+
+
+    private void UpgradeDataLoadedCallback(int timerLevel, int sizeLevel, int powerLevel)
+    {
+        timerDuration += additionTimePerLevel * timerLevel;
+
         Initialize();
     }
 

@@ -32,10 +32,11 @@ public class UpgradeManager : MonoBehaviour
     public static Action onTimerPurchased;
     public static Action onSizePurchased;
     public static Action onPowerPurchased;
+    public static Action<int, int, int> onDataLoaded; 
 
 
 
-    private void Awake()
+    private void Start()
     {
         LoadData();
 
@@ -101,6 +102,8 @@ public class UpgradeManager : MonoBehaviour
         timerLevel = PlayerPrefs.GetInt(TIMER_KEY);
         sizeLevel = PlayerPrefs.GetInt(SIZE_KEY);
         powerLevel = PlayerPrefs.GetInt(POWER_KEY);
+
+        onDataLoaded?.Invoke(timerLevel, sizeLevel, powerLevel);
     }
 
 
