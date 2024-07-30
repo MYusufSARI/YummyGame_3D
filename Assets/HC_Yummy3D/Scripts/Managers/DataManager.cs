@@ -31,6 +31,24 @@ public class DataManager : MonoBehaviour
     }
 
 
+    public void AddCoins(int amount)
+    {
+        _coins += amount;
+        SaveData();
+
+        onCoinsUpdated?.Invoke();
+    }
+
+
+    public void Purchase(int price)
+    {
+        _coins -= price;
+        SaveData();
+
+        onCoinsUpdated?.Invoke();
+    }
+
+
     public int GetCoins()
     {
         return _coins;
@@ -39,7 +57,7 @@ public class DataManager : MonoBehaviour
 
     private void LoadData()
     {
-        _coins = PlayerPrefs.GetInt(COINS_KEY);
+        _coins = PlayerPrefs.GetInt(COINS_KEY, 150);
 
         onCoinsUpdated?.Invoke();
     }

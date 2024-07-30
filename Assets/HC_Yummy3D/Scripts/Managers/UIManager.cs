@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class UIManager : MonoBehaviour
 {
@@ -10,6 +11,15 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject gamePanel;
 
 
+    [Header(" Coins ")]
+    [SerializeField] private TextMeshProUGUI menuCoinsText;
+
+
+
+    private void Awake()
+    {
+        DataManager.onCoinsUpdated += UpdateCoins;
+    }
 
 
     private void Start()
@@ -21,6 +31,8 @@ public class UIManager : MonoBehaviour
     private void OnDestroy()
     {
         GameManager.onGameStateChanged -= GameStateChangedCallback;
+
+        DataManager.onCoinsUpdated -= UpdateCoins;
     }
 
 
@@ -50,5 +62,11 @@ public class UIManager : MonoBehaviour
     {
         gamePanel.SetActive(true);
         menuPanel.SetActive(false);
+    }
+
+
+    private void UpdateCoins()
+    {
+        menuCoinsText.text = DataManager.instance.GetCoins().ToString();
     }
 }
