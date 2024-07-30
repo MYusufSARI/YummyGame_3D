@@ -23,12 +23,16 @@ public class PlayerTimer : MonoBehaviour
         Initialize();
 
         GameManager.onGameStateChanged += GameStateChangedCallback;
+
+        UpgradeManager.onTimerPurchased += TimerPurchasedCallback;
     }
 
 
     private void OnDestroy()
     {
         GameManager.onGameStateChanged -= GameStateChangedCallback;
+
+        UpgradeManager.onTimerPurchased -= TimerPurchasedCallback;
     }
 
 
@@ -93,6 +97,13 @@ public class PlayerTimer : MonoBehaviour
         Debug.Log("Timer is over ! ");
 
         onTimerOver?.Invoke();
+    }
+
+
+    private void TimerPurchasedCallback()
+    {
+        timerDuration += 3;
+        Initialize();
     }
 
 

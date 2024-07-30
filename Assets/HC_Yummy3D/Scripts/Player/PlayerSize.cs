@@ -17,6 +17,10 @@ public class PlayerSize : MonoBehaviour
     private float scaleValue;
 
 
+    [Header(" Power ")]
+    private float powerMultiplier;
+
+
     [Header(" Events ")]
     public static Action<float> onIncreased;
 
@@ -25,6 +29,16 @@ public class PlayerSize : MonoBehaviour
     private void Start()
     {
         fillImage.fillAmount = 0;
+
+        UpgradeManager.onSizePurchased += SizePurchasedCallback;
+        UpgradeManager.onPowerPurchased += PowerPurchasedCallback;
+    }
+
+
+    private void OnDestroy()
+    {
+        UpgradeManager.onSizePurchased -= SizePurchasedCallback;
+        UpgradeManager.onPowerPurchased -= PowerPurchasedCallback;
     }
 
 
@@ -41,7 +55,7 @@ public class PlayerSize : MonoBehaviour
 
     public void CollectibleCollected(float objectSize)
     {
-        scaleValue += objectSize;
+        scaleValue += objectSize * (1 + powerMultiplier);
 
         if (scaleValue >= scaleIncreaseThreshold)
         {
@@ -61,5 +75,17 @@ public class PlayerSize : MonoBehaviour
         LeanTween.value(fillImage.fillAmount, targetFillAmount, 0.2f * Time.deltaTime * 60)
             .setOnUpdate((value) => fillImage.fillAmount = value);
 
+    }
+
+
+    private void SizePurchasedCallback()
+    {
+        IncreaseScale();
+    }
+
+
+    private void PowerPurchasedCallback()
+    {
+        powerMultiplier++;
     }
 }

@@ -355,7 +355,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 72
+  m_fontSize: 1
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -716,6 +716,7 @@ GameObject:
   - component: {fileID: 7718195344345038631}
   - component: {fileID: 374407670040111132}
   - component: {fileID: 4805836429001729779}
+  - component: {fileID: 7121731829581129551}
   m_Layer: 0
   m_Name: TimerUpgradeButton
   m_TagString: Untagged
@@ -828,6 +829,20 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &7121731829581129551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6797789146072942721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ed691d7f134a429eabaca6d85694806, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelText: {fileID: 4736157179306462365}
+  priceText: {fileID: 8980657384442641056}
 --- !u!1 &7565016916871215438
 GameObject:
   m_ObjectHideFlags: 0
